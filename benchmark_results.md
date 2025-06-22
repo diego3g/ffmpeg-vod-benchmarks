@@ -8,98 +8,56 @@
 - **Total benchmark time**: 00:03:08
 - **Date**: Generated using hls_benchmark.sh
 
-## Complete Results
+## Results Summary
 
-### Approach 1: Baseline (CRF 26, veryfast)
-- **Encoding time**: 00:00:14
-- **Average 1080p segment size**: 1.0 MB
-- **Configuration**: CRF 26, veryfast preset, AAC audio encoding
+| Rank | Approach | Encoding Time | 1080p Segment Size | Performance | Configuration |
+|------|----------|---------------|-------------------|-------------|---------------|
+| 🏆 1 | **Ultrafast (CRF 26)** | 00:00:11 ⚡ | 2.7 MB | **FASTEST** | Ultrafast preset for maximum speed |
+| 2 | **Baseline (CRF 26, veryfast)** | 00:00:14 | 1.0 MB 💾 | +27% | CRF 26, veryfast preset, AAC audio |
+| 3 | **Superfast (CRF 22)** | 00:00:14 | 4.4 MB 📁 | +27% | Better quality with CRF 22 |
+| 4 | **Fast + Audio copy** | 00:00:20 | 2.0 MB | +81% | Skips audio re-encoding |
+| 5 | **Fast + Film tune** | 00:00:22 | 2.1 MB | +100% | Fast preset optimized for film |
+| 6 | **Multithreaded (8 threads)** | 00:00:23 | 2.0 MB | +109% | Multi-core CPU utilization |
+| 7 | **Segment First (Fast)** | 00:00:31 | 1.1 MB | +181% | Pre-segment then convert |
+| 8 | **x264 Optimized** | 00:00:52 🐌 | 2.6 MB | +372% | Advanced x264 parameters |
 
-### Approach 2: Ultrafast (CRF 26)
-- **Encoding time**: 00:00:11 ⚡ **FASTEST**
-- **Average 1080p segment size**: 2.7 MB
-- **Performance**: ✅ 27% faster than baseline
-- **Configuration**: Ultrafast preset for maximum speed
+## Performance Analysis
 
-### Approach 3: Superfast (CRF 22)
-- **Encoding time**: 00:00:14
-- **Average 1080p segment size**: 4.4 MB 📁 **LARGEST FILES**
-- **Performance**: Same speed as baseline
-- **Configuration**: Better quality with CRF 22
+### Speed Rankings
+- ⚡ **Fastest**: Ultrafast (11s) - 27% faster than baseline
+- 🐌 **Slowest**: x264 Optimized (52s) - 372% slower than fastest
 
-### Approach 4: Fast + Film tune
-- **Encoding time**: 00:00:22
-- **Average 1080p segment size**: 2.1 MB
-- **Configuration**: Fast preset optimized for film content
-
-### Approach 5: Fast + Audio copy
-- **Encoding time**: 00:00:20
-- **Average 1080p segment size**: 2.0 MB
-- **Configuration**: Skips audio re-encoding for faster processing
-
-### Approach 6: x264 Optimized
-- **Encoding time**: 00:00:52 🐌 **SLOWEST**
-- **Average 1080p segment size**: 2.6 MB
-- **Configuration**: Advanced x264 parameters for quality optimization
-
-### Approach 7: Multithreaded (8 threads)
-- **Encoding time**: 00:00:23
-- **Average 1080p segment size**: 2.0 MB
-- **Configuration**: Optimized for multi-core CPU utilization
-
-### Approach 8: Segment First (Fast)
-- **Encoding time**: 00:00:31
-- **Average 1080p segment size**: 1.1 MB 💾 **SMALLEST FILES**
-- **Configuration**: Pre-segment then convert approach
-
-## Performance Rankings
-
-### By Speed (Fastest to Slowest)
-1. 🏆 **Ultrafast (CRF 26)**: 00:00:11 (FASTEST)
-2. **Baseline (CRF 26, veryfast)**: 00:00:14 (+27%)
-3. **Superfast (CRF 22)**: 00:00:14 (+27%)
-4. **Fast + Audio copy**: 00:00:20 (+81%)
-5. **Fast + Film tune**: 00:00:22 (+100%)
-6. **Multithreaded (8 threads)**: 00:00:23 (+109%)
-7. **Segment First (Fast)**: 00:00:31 (+181%)
-8. **x264 Optimized**: 00:00:52 (+372%)
-
-### By File Size (Smallest to Largest)
-1. 💾 **Baseline (CRF 26, veryfast)**: 1.0 MB
-2. **Segment First (Fast)**: 1.1 MB
-3. **Fast + Audio copy**: 2.0 MB
-4. **Multithreaded (8 threads)**: 2.0 MB
-5. **Fast + Film tune**: 2.1 MB
-6. **x264 Optimized**: 2.6 MB
-7. **Ultrafast (CRF 26)**: 2.7 MB
-8. **Superfast (CRF 22)**: 4.4 MB
+### File Size Rankings  
+- 💾 **Smallest**: Baseline (1.0 MB) - Best compression ratio
+- 📁 **Largest**: Superfast CRF 22 (4.4 MB) - Highest quality
 
 ## Key Insights
 
-### Speed vs Quality Trade-offs
-- **Ultrafast** is 27% faster than baseline but produces 170% larger files
-- **Superfast CRF 22** produces the highest quality (largest files) at baseline speed
-- **Baseline** offers the best compression ratio (smallest files) with good speed
+| Insight | Details |
+|---------|---------|
+| **Speed vs Size** | Ultrafast is 27% faster but produces 170% larger files than baseline |
+| **Quality vs Speed** | Superfast CRF 22 produces highest quality at baseline speed |
+| **Best Compression** | Baseline offers best compression ratio with good speed |
+| **Audio Optimization** | Audio copy saves encoding time when audio quality is sufficient |
+| **Multi-core Benefits** | Multithreading provides good balance for multi-core systems |
+| **Segment Strategy** | Segment-first gives excellent compression but slower overall |
 
-### Optimization Strategies
-- **Audio copy** saves encoding time when audio quality is sufficient
-- **Multithreading** provides good balance for multi-core systems
-- **Segment-first** approach gives excellent compression but slower overall speed
-- **x264 optimized** parameters sacrifice speed for advanced quality tuning
+## Use Case Recommendations
 
-## Recommendations
+| Use Case | Recommended Approach | Encoding Time | File Size | Reason |
+|----------|---------------------|---------------|-----------|---------|
+| **Live streaming** | Ultrafast | 00:00:11 | 2.7 MB | Maximum speed for real-time |
+| **VOD with storage limits** | Baseline | 00:00:14 | 1.0 MB | Best compression ratio |
+| **High-quality VOD** | Superfast CRF 22 | 00:00:14 | 4.4 MB | Balanced quality/speed |
+| **Multi-core systems** | Multithreaded | 00:00:23 | 2.0 MB | Efficient CPU utilization |
+| **Production workflows** | x264 Optimized | 00:00:52 | 2.6 MB | Maximum quality control |
 
-| Use Case | Recommended Approach | Reason |
-|----------|---------------------|---------|
-| **Live streaming** | Ultrafast | Maximum speed for real-time encoding |
-| **VOD with storage limits** | Baseline | Best compression ratio |
-| **High-quality VOD** | Superfast CRF 22 | Balanced quality/speed |
-| **Multi-core systems** | Multithreaded | Efficient CPU utilization |
-| **Production workflows** | x264 Optimized | Maximum quality control |
+## Technical Details
 
-## Technical Notes
+- **HLS segments**: 4 seconds each
+- **Test duration**: First 60 seconds of input video  
+- **Resolutions tested**: 240p, 480p, 720p, 1080p
+- **File sizes**: Averages of 1080p segments only
+- **Performance**: Relative to fastest approach (Ultrafast)
 
-- All tests performed on 4-second HLS segments
-- Tests used first 60 seconds of input video
-- Results may vary based on video content and hardware
-- File sizes are averages of 1080p segments only 
+> **Note**: Results may vary based on video content, hardware specifications, and system load. 
